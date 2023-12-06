@@ -6,22 +6,78 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-
-    }
+      if (profile.active && reason) {
+         profile.active = false
+         profile.reason = reason
+         return profile
+      } else if (!profile.active) {
+         profile.active = true
+         delete profile.reason
+         return profile
+      } else if (profile.active) {
+         if (!reason) {
+           return 'confirm status manually';
+         }
+        }
+      }
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+      if (x < 1 || x > 3 || y < 1 || y > 3) {
+        return 'invalid coordinates'
+      }
+      let newX = x - 1
+      let newY = y - 1
 
+      let gridValue = grid[newY][newX];
+
+      if (gridValue === '🟦') {
+        return "🟦 🥳"
+      } else if (gridValue === '🟥') {
+        return "🟥 💀"
+      }
     }
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-
-    }
-
+      for (let key in obj) {
+        if (key.length > 9) {
+          return 'shorten all prop names to 9 chars or less'
+        } 
+     
+      for (let key in obj) {
+        if (obj[key] === 0) {
+          obj[key] = false
+        } else if (obj[key] === 1) {
+          obj[key] = true
+        } else if (obj[key] === null) {
+          delete obj[key]
+        }
+      } 
+    }return obj
+  }
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
+      if (!text || forbidden.length === 0) {
+        return text
+      }
 
+      let words = text.split(' ')
+      let processedWords = [];
+
+      for (let i = 0; i < words.length; i++) {
+        let word = words[i];
+        if (forbidden.indexOf(word) !== -1) {
+          let replacement = ''
+          for (let j = 0; j < word.length; j++) {
+            replacement += 'x'
+          }
+          processedWords.push(replacement)
+        } else {
+          processedWords.push(word)
+        }
+      }
+      return processedWords.join(' ')
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
